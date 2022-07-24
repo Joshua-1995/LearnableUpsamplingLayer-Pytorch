@@ -9,11 +9,12 @@ Pytorch implementation of LearnableUpsamplingLayer (NaturalSpeech, Tan et al., 2
 y : phoneme hidden sequence [N, C, T]
 duration_pred : phoneme duration [N, T]
 src_mask : mask of phoneme hidden sequence [N, 1, T]
+
 '''
 
 from model import LearnableUpsamplingLayer
 
-lu = LearnableUpsamplingLayer
+lu = LearnableUpsamplingLayer(in_channels, out_channels)
 y, mel_mask = lu(y, duration_pred, src_mask) 
 
 ```
