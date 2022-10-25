@@ -125,14 +125,14 @@ class LearnableUpsamplingLayer(torch.nn.Module):
         return mask
 
 class ConvLN(nn.Module):
-  def __init__(self, in_channels, out_channels, kernel_size, ln_channels=8, eps=1e-5):
+  def __init__(self, in_channels, out_channels, kernel_size, ln_channels=8, eps=1e-5, padding=1.):
     super().__init__()
     self.channels = ln_channels
     self.eps = eps
     self.conv = nn.Conv1d(in_channels, out_channels, kernel_size=kernel_size, padding=padding)
 
-    self.gamma = nn.Parameter(torch.ones(channels))
-    self.beta = nn.Parameter(torch.zeros(channels))
+    self.gamma = nn.Parameter(torch.ones(ln_channels))
+    self.beta = nn.Parameter(torch.zeros(ln_channels))
 
   def forward(self, x):
     x = self.conv(x)
